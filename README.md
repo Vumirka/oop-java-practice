@@ -92,5 +92,5 @@ Done! Program finished successfully.
 
 ---
 <div align="center">
-Розроблено з 💜 | Ріжкевbx Вікторія
+Розроблено з 💜 | Ріжкевич Вікторія
 </div>
