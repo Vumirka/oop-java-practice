@@ -50,44 +50,47 @@
 
 ---
 
-## 🖥️ Приклад виконання
+## 🖥️ Приклад запуску
 ```
 Starting Text Analyzer...
 
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
- Text Analysis
+Text Analysis
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
- Word count: 3
- Character count: 13
+Word count:9
+Character count:56
 
- Words:
-    1. "Hello"
-    2. "World"
-    3. "Java"
+Words:
+ 1. "A"
+ 2. "simple"
+ 3. "console"
+ 4. "application"
+ 5. "-"
+ 6. "outputting"
+ 7. "command"
+ 8. "line"
+ 9. "arguments"
 
 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 Done! Program finished successfully.
 ```
+---
+## 📸 Скріншот
+
+> ![Виконання програми](https://github.com/Vumirka/oop-java-practice/blob/task-1-(02.03.26)/img/result.png?raw=true)
 
 ---
+## 🗂️ Архітектура класів
 
-## 📸 Скріншот виконання
+**TextAnalyzer** - серце програми.
+Він отримує масив слів, рахує символи і будує відформатований звіт.
 
-> *(додай скріншот консолі сюди)*
-
----
-
-## 🚀 Як запустити
-
-1. Відкрити проект у **NetBeans**
-2. ПКМ на проект → **Properties** → **Run**
-3. У полі **Arguments** ввести слова, наприклад: `Hello World Java`
-4. Запустити — **F6**
+**Main** - точка входу.
+Просто запускає аналізатор і передає йому аргументи командного рядка.
 
 ---
-
 <div align="center">
-Розроблено з 💜 | Ріжкеві Вікторія
+Розроблено з 💜 | Ріжкевbx Вікторія
 </div>
