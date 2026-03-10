@@ -45,8 +45,18 @@
 🔗 [Перейти до завдання](https://github.com/Vumirka/oop-java-practice/tree/task-1-(02.03.26))
 
 </details>
+<details>
+<summary>🌷 Завдання 2 (03.03.26)</summary>
 
----
+<br>
+
+> 💻 У цьому завданні реалізовано використання серіалізації/десеріалізації, transient полів, агрегування та індивідуальне завдання.
+
+🔗 [Перейти до завдання](https://github.com/Vumirka/oop-java-practice/tree/task-2-(03.03.26))
+
+</details>
+
+
 
 <div align="center">
 
