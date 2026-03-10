@@ -166,9 +166,9 @@ while (minCmd.running() || maxCmd.running() || avgCmd.running()) {
 ---
 
 ### 📸 3 - Результати тестування
-![tests1](img/tests1.png)
-
 ![tests2](img/tests2.png)
+
+![tests1](img/tests1.png)
 
 
 ---
