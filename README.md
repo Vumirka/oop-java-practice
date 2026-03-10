@@ -1,65 +1,163 @@
 <div align="center">
 
-# ООП Практика - Ріжкевич Вікторія
+# 🌸 Завдання 4
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=FF85C1&center=true&vCenter=true&width=435&lines=Java+%E2%98%95+OOP+Practice;NetBeans+%F0%9F%92%9C;35+%D0%B3%D1%80%D1%83%D0%BF%D0%B0;%E2%80%9C%CB%9A%E2%82%8A%E2%80%A7%EA%92%B0%E0%A8%86+%E2%99%A1+%E0%A8%86%EA%92%B1+%E2%80%A7%E2%82%8A%CB%9A%E2%80%9D" alt="Typing SVG" />
-
-![Java](https://img.shields.io/badge/Java-☕-pink?style=for-the-badge&logo=java)
+![Java](https://img.shields.io/badge/Java-☕-pink?style=for-the-badge)
 ![NetBeans](https://img.shields.io/badge/IDE-NetBeans-purple?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-В%20процесі-ff69b4?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Виконано-ff69b4?style=for-the-badge)
 
 </div>
 
 ---
-## 🎀 Загальна інформація
 
-</div>
-
-| Студентка | Ріжкевич Вікторія |
-|:---|:---|
-| Група | 35 група |
-| Підгрупа | 2 підгрупа (Подунова А.О.) |
-| Мова програмування | Java |
+> У цьому завданні проект розширено похідними класами ViewTable та ViewableTable.
+> Продемонстровано overriding, overloading та поліморфізм на основі
+> обчислення загального опору провідників.
 
 ---
-## 📖 Про репозиторій
 
-</div>
+## 🎀 Постановка задачі
 
-> 🌸 У цьому репозиторії зібрані практичні завдання з дисципліни
-> **"Об'єктно-орієнтоване програмування"**.
-> Кожне завдання знаходиться в **окремій гілці** для зручного перегляду.
+### Індивідуальне завдання №17
+Визначити **8-річне та 16-річне** уявлення цілісного значення загального
+електричного опору трьох послідовно з'єднаних провідників при заданому
+постійному струмі та відомій напрузі на кожному провіднику.
+
+### П'ять обов'язкових частин
+
+**Завдання 1** - За основу використовувати вихідний текст проекту попередньої лабораторної роботи Використовуючи шаблон проектування Factory Method (Virtual Constructor), розширити ієрархію похідними класами, реалізують методи для подання результатів у вигляді текстової таблиці. Параметри відображення таблиці мають визначатися користувачем.
+
+**Завдання 2** - Продемонструвати заміщення (перевизначення, overriding), поєднання (перевантаження, overloading), динамічне призначення методів (Пізнє зв'язування, поліморфізм, dynamic method dispatch).
+
+**Завдання 3** - Забезпечити діалоговий інтерфейс із користувачем.
+
+**Завдання 4** - Розробити клас для тестування основної функціональності.
+
+**Завдання 5** - Використати коментарі для автоматичної генерації документації засобами javadoc.
 
 ---
-## 📋 Список завдань
 
-</div>
+## 💜 Про програму
 
-<details>
-<summary>🌷 Завдання 1 (02.03.26)</summary>
+Програма розширює попередній проект - додано клас `ViewTable` що виводить
+результати обчислень у вигляді форматованої таблиці. Ширина таблиці
+задається користувачем під час роботи програми.
 
-<br>
+---
 
-> 💻 Проста консольна програма - вивід аргументів командного рядка
+## 📁 Структура проекту
+```
+├── img
+│   ├── table.png
+│   ├── width.png
+│   └── tests.png
+├── src
+│   ├── domain
+│   │   ├── ResistanceData.java        ← з попереднього проекту
+│   │   ├── ResistanceCalculator.java  ← з попереднього проекту
+│   │   ├── View.java                  ← з попереднього проекту
+│   │   ├── Viewable.java              ← з попереднього проекту
+│   │   ├── ViewableResult.java        ← з попереднього проекту
+│   │   ├── ViewResult.java            ← з попереднього проекту
+│   │   ├── ViewableTable.java         ← НОВЕ: ConcreteCreator
+│   │   └── ViewTable.java             ← НОВЕ: ConcreteProduct
+│   └── test
+│       ├── MainDialog.java            ← діалог з вибором ширини
+│       └── ResistanceTest.java        ← тестування
+├── .gitignore
+└── README.md
+```
 
-🔗 [Перейти до завдання](https://github.com/Vumirka/oop-java-practice/tree/task-1-(02.03.26))
+---
 
-</details>
-<details>
-<summary>🌷 Завдання 2 (03.03.26)</summary>
+## 🗂️ Розширення ієрархії Factory Method
 
-<br>
+| Роль | Клас | Опис |
+|------|------|------|
+| Creator | `Viewable` | Інтерфейс фабрики |
+| ConcreteCreator | `ViewableResult` | Створює `ViewResult` |
+| ConcreteCreator+ | `ViewableTable` | Розширює `ViewableResult`, створює `ViewTable` |
+| Product | `View` | Інтерфейс відображення |
+| ConcreteProduct | `ViewResult` | Базовий вивід колекції |
+| ConcreteProduct+ | `ViewTable` | Розширює `ViewResult`, вивід таблицею |
 
-> 💻 У цьому завданні реалізовано використання серіалізації/десеріалізації, transient полів, агрегування та індивідуальне завдання.
+---
 
-🔗 [Перейти до завдання](https://github.com/Vumirka/oop-java-practice/tree/task-2-(03.03.26))
+## 🔍 Демонстрація концепцій ООП
 
-</details>
+### Overriding - перевизначення методів
+`ViewTable` перевизначає методи батьківського класу `ViewResult`:
+```java
+@Override
+public void viewHeader() { ... } // таблична шапка замість простого рядка
 
+@Override
+public void viewBody() { ... }   // рядки таблиці замість простого списку
 
+@Override
+public void viewFooter() { ... } // підсумок з кількістю записів
+
+@Override
+public void viewInit() {         // додає повідомлення перед ініціалізацією
+    System.out.println("  >> Initializing...");
+    super.viewInit();             // виклик методу батька
+}
+```
+
+### Overloading - перевантаження методів
+Три конструктори та два методи `setWidth` з різними параметрами:
+```java
+ViewTable()              // ширина за замовчуванням
+ViewTable(int width)     // задана ширина
+ViewTable(int width, int size) // ширина + розмір колекції
+
+setWidth(int width)              // просто змінює ширину
+setWidth(int width, String msg)  // змінює ширину + виводить повідомлення
+```
+
+### Поліморфізм - dynamic method dispatch
+```java
+// Змінна типу View - фактично ViewTable
+View view = new ViewableTable().getView();
+
+// Який viewInit() викличеться?
+// → ViewTable.viewInit() - бо overriding!
+// Це і є пізнє зв'язування (late binding)
+view.viewInit();
+```
+
+---
+
+## 🖥️ Команди діалогу
+
+| Команда | Дія |
+|---------|-----|
+| `g` | Згенерувати нові дані |
+| `w` | Задати ширину таблиці |
+| `v` | Переглянути таблицю |
+| `s` | Зберегти у файл |
+| `r` | Відновити з файлу |
+| `q` | Вийти |
+
+---
+
+## 📸 Скріншоти виконання
+
+### 📸 1 - Таблиця результатів
+![table](img/table.png)
+
+---
+
+### 📸 2 - Зміна ширини таблиці користувачем
+![width](img/width.png)
+
+---
+
+### 📸 3 - Результати тестування
+![tests](img/tests.png)
+
+---
 
 <div align="center">
-
 Розроблено з 💜 | Ріжкевич Вікторія
-
 </div>
