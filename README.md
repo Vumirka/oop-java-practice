@@ -111,17 +111,17 @@
 
 ## 📸 Скріншоти виконання
 
-### 📸 1 — Генерація та перегляд колекції
+### 📸 1 - Генерація та перегляд колекції
 ![dialog](https://raw.githubusercontent.com/Vumirka/oop-java-practice/refs/heads/task-3-(04.03.26)/img/dialog.png)
 
 ---
 
-### 📸 2 — Збереження та відновлення
+### 📸 2 - Збереження та відновлення
 ![result](https://raw.githubusercontent.com/Vumirka/oop-java-practice/refs/heads/task-3-(04.03.26)/img/result.png)
 
 ---
 
-### 📸 3 — Результати тестування
+### 📸 3 - Результати тестування
 ![tests](https://raw.githubusercontent.com/Vumirka/oop-java-practice/refs/heads/task-3-(04.03.26)/img/tests.png)
 
 ---
