@@ -125,16 +125,16 @@ R_total = R1 + R2 + R3
 ## 🖥️ Скріншоти виконання
 
 ### 📸 1 - Діалоговий режим: введення даних та обчислення
-
+![-](https://raw.githubusercontent.com/Vumirka/oop-java-practice/refs/heads/task-2-(03.03.26)/img/dialog.png)
 
 ---
 
 ### 📸 2 - Збереження та відновлення (transient поле)
-
+![-](https://raw.githubusercontent.com/Vumirka/oop-java-practice/refs/heads/task-2-(03.03.26)/img/result.png)
 
 ---
 
 ### 📸 3 - Результати тестування
-
+![-](https://raw.githubusercontent.com/Vumirka/oop-java-practice/refs/heads/task-2-(03.03.26)/img/tests.png)
 
 ---
