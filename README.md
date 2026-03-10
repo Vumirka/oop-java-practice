@@ -138,3 +138,6 @@ R_total = R1 + R2 + R3
 ![-](https://raw.githubusercontent.com/Vumirka/oop-java-practice/refs/heads/task-2-(03.03.26)/img/tests.png)
 
 ---
+<div align="center">
+Розроблено з 💜 | Ріжкевич Вікторія
+</div>
