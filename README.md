@@ -27,7 +27,7 @@
 
 **Завдання 1** - Продемонструвати можливість паралельної обробки елементів колекції (пошук мінімуму, максимуму, обчислення середнього значення, відбір за критерієм, статистична обробка тощо).
 
-**Завдання 2** -  Управління чергою завдань (команд) реалізувати за допомогою шаблону Worker Thread.
+**Завдання 2** - Управління чергою завдань (команд) реалізувати за допомогою шаблону Worker Thread.
 
 ---
 
@@ -102,11 +102,11 @@
 
 ### Розподіл завдань між двома чергами
 ```java
-// Черга 1 — виконує MinResistanceCommand
+// Черга 1 - виконує MinResistanceCommand
 CommandQueue queue1 = new CommandQueue();
 queue1.put(minCmd);
 
-// Черга 2 — виконує MaxResistanceCommand, потім AvgResistanceCommand
+// Черга 2 - виконує MaxResistanceCommand, потім AvgResistanceCommand
 CommandQueue queue2 = new CommandQueue();
 queue2.put(maxCmd);
 queue2.put(avgCmd);
@@ -117,7 +117,7 @@ while (minCmd.running() || maxCmd.running() || avgCmd.running()) {
 }
 ```
 
-Завдяки двом чергам `min` та `max+avg` виконуються **паралельно** —
+Завдяки двом чергам `min` та `max+avg` виконуються **паралельно** -
 кожна черга має свій власний Worker у окремому потоці.
 
 ---
@@ -126,7 +126,7 @@ while (minCmd.running() || maxCmd.running() || avgCmd.running()) {
 
 | Клас | Роль |
 |------|------|
-| `Queue` | Інтерфейс черги — методи `put` та `take` |
+| `Queue` | Інтерфейс черги - методи `put` та `take` |
 | `CommandQueue` | Реалізує Worker Thread — черга + внутрішній Worker |
 | `MaxResistanceCommand` | Завдання: пошук максимального R_total |
 | `MinResistanceCommand` | Завдання: пошук мінімального R_total |
@@ -153,18 +153,23 @@ while (minCmd.running() || maxCmd.running() || avgCmd.running()) {
 
 ## 📸 Скріншоти виконання
 
-### 📸 1 — Запуск потоків з меню
-![threads](img/threads.png)
+### 📸 1 - Запуск потоків з меню
+![threads1](img/threads1.png)
+
+![threads2](img/threads2.png)
 
 ---
 
-### 📸 2 — Паралельне виконання потоків
+### 📸 2 - Паралельне виконання потоків
 ![parallel](img/parallel.png)
 
 ---
 
-### 📸 3 — Результати тестування
-![tests](img/tests.png)
+### 📸 3 - Результати тестування
+![tests1](img/tests1.png)
+
+![tests2](img/tests2.png)
+
 
 ---
 
