@@ -56,7 +56,25 @@
 
 </details>
 
+<details>
+<summary>🌷 Завдання 3 (04.03.26)</summary>
+<br>
 
+> 💻 У цьому завданні реалізовано шаблон проектування Factory Method, ієрархію інтерфейсів та колекцію результатів обчислень.
+
+🔗 [Перейти до завдання](https://github.com/Vumirka/oop-java-practice/tree/task-3-(04.03.26))
+
+</details>
+
+<details>
+<summary>🌷 Завдання 4 (05.03.26)</summary>
+<br>
+
+> 💻 У цьому завданні розширено ієрархію класами ViewTable та ViewableTable, продемонстровано overriding, overloading та поліморфізм.
+
+🔗 [Перейти до завдання](https://github.com/Vumirka/oop-java-practice/tree/task-4-(05.03.26))
+
+</details>
 
 <div align="center">
 
