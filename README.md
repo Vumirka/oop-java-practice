@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🌸 Завдання 4
+# 🌸 Завдання 5
 
 ![Java](https://img.shields.io/badge/Java-☕-pink?style=for-the-badge)
 ![NetBeans](https://img.shields.io/badge/IDE-NetBeans-purple?style=for-the-badge)
@@ -10,9 +10,9 @@
 
 ---
 
-> У цьому завданні проект розширено похідними класами ViewTable та ViewableTable.
-> Продемонстровано overriding, overloading та поліморфізм на основі
-> обчислення загального опору провідників.
+> У цьому завданні реалізовано обробку колекцій з використанням шаблонів
+> проектування Command, Singleton та макрокоманди Menu.
+> Додано підтримку скасування операцій (undo).
 
 ---
 
@@ -25,44 +25,56 @@
 
 ### П'ять обов'язкових частин
 
-**Завдання 1** - За основу використовувати вихідний текст проекту попередньої лабораторної роботи Використовуючи шаблон проектування Factory Method (Virtual Constructor), розширити ієрархію похідними класами, реалізують методи для подання результатів у вигляді текстової таблиці. Параметри відображення таблиці мають визначатися користувачем.
+**Завдання 1** - Реалізувати можливість скасування (undo) операцій (команд).
 
-**Завдання 2** - Продемонструвати заміщення (перевизначення, overriding), поєднання (перевантаження, overloading), динамічне призначення методів (Пізнє зв'язування, поліморфізм, dynamic method dispatch).
+**Завдання 2** - Продемонструвати поняття "макрокоманда"
 
-**Завдання 3** - Забезпечити діалоговий інтерфейс із користувачем.
+**Завдання 3** - При розробці програми використовувати шаблон Singletone.
 
-**Завдання 4** - Розробити клас для тестування основної функціональності.
+**Завдання 4** - Забезпечити діалоговий інтерфейс із користувачем.
 
-**Завдання 5** - Використати коментарі для автоматичної генерації документації засобами javadoc.
+**Завдання 5** - Розробити клас для тестування функціональності програми.
 
 ---
 
 ## 💜 Про програму
 
-Програма розширює попередній проект - додано клас `ViewTable` що виводить
-результати обчислень у вигляді форматованої таблиці. Ширина таблиці
-задається користувачем під час роботи програми.
+Програма розширює попередній проект - додано архітектуру Command Pattern.
+Кожна дія користувача є окремим об'єктом-командою. Клас Menu є макрокомандою -
+він містить колекцію команд і делегує виконання відповідній команді.
+Клас Application реалізує Singleton - існує лише один екземпляр програми.
 
 ---
 
 ## 📁 Структура проекту
 ```
 ├── img
-│   ├── table.png
-│   ├── width.png
+│   ├── menu.png
+│   ├── undo.png
 │   └── tests.png
 ├── src
 │   ├── domain
-│   │   ├── ResistanceData.java        ← з попереднього проекту
-│   │   ├── ResistanceCalculator.java  ← з попереднього проекту
-│   │   ├── View.java                  ← з попереднього проекту
-│   │   ├── Viewable.java              ← з попереднього проекту
-│   │   ├── ViewableResult.java        ← з попереднього проекту
-│   │   ├── ViewResult.java            ← з попереднього проекту
-│   │   ├── ViewableTable.java         ← НОВЕ: ConcreteCreator
-│   │   └── ViewTable.java             ← НОВЕ: ConcreteProduct
+│   │   ├── ResistanceData.java        ← з попередніх проектів
+│   │   ├── ResistanceCalculator.java  ← з попередніх проектів
+│   │   ├── View.java                  ← з попередніх проектів
+│   │   ├── Viewable.java              ← з попередніх проектів
+│   │   ├── ViewableResult.java        ← з попередніх проектів
+│   │   ├── ViewResult.java            ← з попередніх проектів
+│   │   ├── ViewableTable.java         ← з попередніх проектів
+│   │   ├── ViewTable.java             ← з попередніх проектів
+│   │   ├── Command.java               ← НОВЕ: інтерфейс команди
+│   │   ├── ConsoleCommand.java        ← НОВЕ: інтерфейс консольної команди
+│   │   ├── Menu.java                  ← НОВЕ: макрокоманда
+│   │   ├── Application.java           ← НОВЕ: Singleton
+│   │   ├── ScaleCommand.java          ← НОВЕ: масштабування + undo
+│   │   ├── SortCommand.java           ← НОВЕ: сортування + undo
+│   │   ├── GenerateCommand.java       ← НОВЕ: генерація
+│   │   ├── ViewCommand.java           ← НОВЕ: перегляд
+│   │   ├── SaveCommand.java           ← НОВЕ: збереження
+│   │   ├── RestoreCommand.java        ← НОВЕ: відновлення
+│   │   └── UndoCommand.java           ← НОВЕ: скасування
 │   └── test
-│       ├── MainDialog.java            ← діалог з вибором ширини
+│       ├── Main.java                  ← точка входу
 │       └── ResistanceTest.java        ← тестування
 ├── .gitignore
 └── README.md
@@ -70,86 +82,100 @@
 
 ---
 
-## 🗂️ Розширення ієрархії Factory Method
+## 🗂️ Шаблони проектування
 
-| Роль | Клас | Опис |
-|------|------|------|
-| Creator | `Viewable` | Інтерфейс фабрики |
-| ConcreteCreator | `ViewableResult` | Створює `ViewResult` |
-| ConcreteCreator+ | `ViewableTable` | Розширює `ViewableResult`, створює `ViewTable` |
-| Product | `View` | Інтерфейс відображення |
-| ConcreteProduct | `ViewResult` | Базовий вивід колекції |
-| ConcreteProduct+ | `ViewTable` | Розширює `ViewResult`, вивід таблицею |
+### Singleton - Application
+```java
+// Єдиний екземпляр створюється при завантаженні класу
+private static final Application INSTANCE = new Application();
+
+// Закритий конструктор - ніхто не може створити другий екземпляр
+private Application() {}
+
+// Єдина точка доступу
+public static Application getInstance() {
+    return INSTANCE;
+}
+```
+Завдяки Singleton гарантується що `Application` існує в єдиному екземплярі,
+а доступ до нього можливий з будь-якої точки програми.
 
 ---
 
-## 🔍 Демонстрація концепцій ООП
+### Command - ієрархія команд
 
-### Overriding - перевизначення методів
-`ViewTable` перевизначає методи батьківського класу `ViewResult`:
+| Клас | Роль | Підтримує undo |
+|------|------|:--------------:|
+| `Command` | Інтерфейс команди | — |
+| `ConsoleCommand` | Розширює Command, додає `getKey()` | — |
+| `ScaleCommand` | Масштабує колекцію | ✓ |
+| `SortCommand` | Сортує колекцію | ✓ |
+| `GenerateCommand` | Генерує нові дані | — |
+| `ViewCommand` | Виводить таблицю | — |
+| `SaveCommand` | Серіалізує у файл | — |
+| `RestoreCommand` | Відновлює з файлу | — |
+| `UndoCommand` | Скасовує останню дію | — |
+
+---
+
+### Макрокоманда - Menu
+Клас `Menu` реалізує `Command` і містить колекцію об'єктів `ConsoleCommand`.
+Виклик `menu.execute()` запускає головний цикл і делегує виконання
+відповідній команді зі списку - це і є макрокоманда.
 ```java
-@Override
-public void viewHeader() { ... } // таблична шапка замість простого рядка
+// Menu — колекція команд (макрокоманда)
+menu.add(new ViewCommand(view));
+menu.add(new GenerateCommand(view, history));
+menu.add(new ScaleCommand(view, history));  // undo ✓
+menu.add(new SortCommand(view, history));   // undo ✓
+menu.add(new UndoCommand(history));
 
-@Override
-public void viewBody() { ... }   // рядки таблиці замість простого списку
-
-@Override
-public void viewFooter() { ... } // підсумок з кількістю записів
-
-@Override
-public void viewInit() {         // додає повідомлення перед ініціалізацією
-    System.out.println("  >> Initializing...");
-    super.viewInit();             // виклик методу батька
-}
+// Запуск макрокоманди
+menu.execute();
 ```
 
-### Overloading - перевантаження методів
-Три конструктори та два методи `setWidth` з різними параметрами:
+---
+
+### Undo - скасування операцій
+Команди що підтримують undo зберігають копію стану колекції перед виконанням.
+Виконані команди додаються до стеку `history`.
+`UndoCommand` дістає останню команду зі стеку і викликає її `undo()`.
 ```java
-ViewTable()              // ширина за замовчуванням
-ViewTable(int width)     // задана ширина
-ViewTable(int width, int size) // ширина + розмір колекції
+// ScaleCommand.execute() — зберігає копію і додає себе до стеку
+backup = new ArrayList<>(view.getItems()); // копія
+history.push(this);                        // додаємо до стеку
 
-setWidth(int width)              // просто змінює ширину
-setWidth(int width, String msg)  // змінює ширину + виводить повідомлення
-```
-
-### Поліморфізм - dynamic method dispatch
-```java
-// Змінна типу View - фактично ViewTable
-View view = new ViewableTable().getView();
-
-// Який viewInit() викличеться?
-// → ViewTable.viewInit() - бо overriding!
-// Це і є пізнє зв'язування (late binding)
-view.viewInit();
+// UndoCommand.execute() - скасовує останню команду
+ConsoleCommand last = history.pop();
+last.undo(); // відновлює копію
 ```
 
 ---
 
 ## 🖥️ Команди діалогу
 
-| Команда | Дія |
-|---------|-----|
-| `g` | Згенерувати нові дані |
-| `w` | Задати ширину таблиці |
-| `v` | Переглянути таблицю |
-| `s` | Зберегти у файл |
-| `r` | Відновити з файлу |
-| `q` | Вийти |
+| Команда | Дія | Undo |
+|---------|-----|:----:|
+| `v` | Переглянути таблицю | — |
+| `g` | Згенерувати нові дані | — |
+| `c` | Масштабувати колекцію | ✓ |
+| `o` | Сортувати за R_total | ✓ |
+| `s` | Зберегти у файл | — |
+| `r` | Відновити з файлу | — |
+| `u` | Скасувати останню дію | — |
+| `q` | Вийти | — |
 
 ---
 
 ## 📸 Скріншоти виконання
 
-### 📸 1 - Таблиця результатів
-![table](img/table.png)
+### 📸 1 - Меню та робота з командами
+![menu](img/menu.png)
 
 ---
 
-### 📸 2 - Зміна ширини таблиці користувачем
-![width](img/width.png)
+### 📸 2 - Демонстрація undo
+![undo](img/undo.png)
 
 ---
 
