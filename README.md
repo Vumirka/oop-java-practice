@@ -49,9 +49,13 @@
 ## 📁 Структура проекту
 ```
 ├── img
-│   ├── menu.png
-│   ├── undo.png
-│   └── tests.png
+│   ├── menu1.png
+│   ├── menu2.png
+│   ├── menu3.png
+│   ├── undo1.png
+│   ├── undo2.png
+│   ├── tests1.png
+│   └── tests2.png
 ├── src
 │   ├── domain
 │   │   ├── ResistanceData.java        ← з попередніх проектів
