@@ -171,19 +171,23 @@ last.undo(); // відновлює копію
 
 ### 📸 1 - Меню та робота з командами
 ![menu1](img/menu1.png)
+
 ![menu2](img/menu2.png)
+
 ![menu3](img/menu3.png)
 
 ---
 
 ### 📸 2 - Демонстрація undo
 ![undo1](img/undo1.png)
+
 ![undo2](img/undo2.png)
 
 ---
 
 ### 📸 3 - Результати тестування
 ![tests1](img/tests1.png)
+
 ![tests2](img/tests2.png)
 
 ---
