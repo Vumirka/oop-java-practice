@@ -1,83 +1,173 @@
 <div align="center">
 
-# ООП Практика - Ріжкевич Вікторія
+# 🌸 Завдання 6
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=FF85C1&center=true&vCenter=true&width=435&lines=Java+%E2%98%95+OOP+Practice;NetBeans+%F0%9F%92%9C;35+%D0%B3%D1%80%D1%83%D0%BF%D0%B0;%E2%80%9C%CB%9A%E2%82%8A%E2%80%A7%EA%92%B0%E0%A8%86+%E2%99%A1+%E0%A8%86%EA%92%B1+%E2%80%A7%E2%82%8A%CB%9A%E2%80%9D" alt="Typing SVG" />
-
-![Java](https://img.shields.io/badge/Java-☕-pink?style=for-the-badge&logo=java)
+![Java](https://img.shields.io/badge/Java-☕-pink?style=for-the-badge)
 ![NetBeans](https://img.shields.io/badge/IDE-NetBeans-purple?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-В%20процесі-ff69b4?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Виконано-ff69b4?style=for-the-badge)
 
 </div>
 
 ---
-## 🎀 Загальна інформація
 
-</div>
-
-| Студентка | Ріжкевич Вікторія |
-|:---|:---|
-| Група | 35 група |
-| Підгрупа | 2 підгрупа (Подунова А.О.) |
-| Мова програмування | Java |
+> У цьому завданні реалізовано паралельну обробку колекції об'єктів
+> з використанням шаблону Worker Thread. Три завдання виконуються
+> паралельно у двох чергах — пошук мінімуму, максимуму та середнього значення R_total.
 
 ---
-## 📖 Про репозиторій
 
-</div>
+## 🎀 Постановка задачі
 
-> 🌸 У цьому репозиторії зібрані практичні завдання з дисципліни
-> **"Об'єктно-орієнтоване програмування"**.
-> Кожне завдання знаходиться в **окремій гілці** для зручного перегляду.
+### Індивідуальне завдання №17
+Визначити **8-річне та 16-річне** уявлення цілісного значення загального
+електричного опору трьох послідовно з'єднаних провідників при заданому
+постійному струмі та відомій напрузі на кожному провіднику.
+
+### Три обов'язкові частини
+
+**Завдання 1** - Продемонструвати можливість паралельної обробки елементів колекції (пошук мінімуму, максимуму, обчислення середнього значення, відбір за критерієм, статистична обробка тощо).
+
+**Завдання 2** -  Управління чергою завдань (команд) реалізувати за допомогою шаблону Worker Thread.
 
 ---
-## 📋 Список завдань
 
-</div>
+## 💜 Про програму
 
-<details>
-<summary>🌷 Завдання 1 (02.03.26)</summary>
+Програма розширює попередній проект - додано три команди для паралельної
+обробки колекції та клас CommandQueue що реалізує шаблон Worker Thread.
+Команда `e` запускає два обробники черги одночасно і розподіляє між ними
+три завдання. Програма очікує завершення всіх потоків перед поверненням до меню.
 
-<br>
+---
 
-> 💻 Проста консольна програма - вивід аргументів командного рядка
+## 📁 Структура проекту
+```
+├── img
+│   ├── threads.png
+│   ├── parallel.png
+│   └── tests.png
+├── src
+│   ├── domain
+│   │   ├── ResistanceData.java           ← з попередніх проектів
+│   │   ├── ResistanceCalculator.java     ← з попередніх проектів
+│   │   ├── View.java                     ← з попередніх проектів
+│   │   ├── Viewable.java                 ← з попередніх проектів
+│   │   ├── ViewableResult.java           ← з попередніх проектів
+│   │   ├── ViewResult.java               ← з попередніх проектів
+│   │   ├── ViewableTable.java            ← з попередніх проектів
+│   │   ├── ViewTable.java                ← з попередніх проектів
+│   │   ├── Command.java                  ← з попередніх проектів
+│   │   ├── ConsoleCommand.java           ← з попередніх проектів
+│   │   ├── Menu.java                     ← з попередніх проектів
+│   │   ├── Application.java              ← з попередніх проектів
+│   │   ├── ScaleCommand.java             ← з попередніх проектів
+│   │   ├── SortCommand.java              ← з попередніх проектів
+│   │   ├── GenerateCommand.java          ← з попередніх проектів
+│   │   ├── ViewCommand.java              ← з попередніх проектів
+│   │   ├── SaveCommand.java              ← з попередніх проектів
+│   │   ├── RestoreCommand.java           ← з попередніх проектів
+│   │   ├── UndoCommand.java              ← з попередніх проектів
+│   │   ├── Queue.java                    ← НОВЕ: інтерфейс черги
+│   │   ├── CommandQueue.java             ← НОВЕ: Worker Thread
+│   │   ├── MaxResistanceCommand.java     ← НОВЕ: пошук максимуму
+│   │   ├── MinResistanceCommand.java     ← НОВЕ: пошук мінімуму
+│   │   ├── AvgResistanceCommand.java     ← НОВЕ: середнє значення
+│   │   └── ExecuteCommand.java           ← НОВЕ: запуск потоків
+│   └── test
+│       ├── Main.java                     ← оновлений
+│       └── ResistanceTest.java           ← 6 нових тестів
+├── .gitignore
+└── README.md
+```
 
-🔗 [Перейти до завдання](https://github.com/Vumirka/oop-java-practice/tree/task-1-(02.03.26))
+---
 
-</details>
-<details>
-<summary>🌷 Завдання 2 (03.03.26)</summary>
+## 🗂️ Шаблон Worker Thread
 
-<br>
+### Як це працює
 
-> 💻 У цьому завданні реалізовано використання серіалізації/десеріалізації, transient полів, агрегування та індивідуальне завдання.
+Клас `CommandQueue` створює внутрішній клас `Worker` що виконується
+в окремому потоці. Worker безперервно перевіряє чергу та виконує
+команди одну за одною. Клієнту достатньо лише покласти завдання у чергу.
+```
+Клієнт                CommandQueue              Worker (окремий потік)
+   |                       |                           |
+   |--- put(minCmd) ------>|                           |
+   |--- put(maxCmd) ------>|                           |
+   |                       |<--- take() --------------|
+   |                       |---- minCmd.execute() ---->|
+   |                       |<--- take() --------------|
+   |                       |---- maxCmd.execute() ---->|
+```
 
-🔗 [Перейти до завдання](https://github.com/Vumirka/oop-java-practice/tree/task-2-(03.03.26))
+### Розподіл завдань між двома чергами
+```java
+// Черга 1 — виконує MinResistanceCommand
+CommandQueue queue1 = new CommandQueue();
+queue1.put(minCmd);
 
-</details>
+// Черга 2 — виконує MaxResistanceCommand, потім AvgResistanceCommand
+CommandQueue queue2 = new CommandQueue();
+queue2.put(maxCmd);
+queue2.put(avgCmd);
 
-<details>
-<summary>🌷 Завдання 3 (04.03.26)</summary>
-<br>
+// Головний потік очікує завершення всіх трьох
+while (minCmd.running() || maxCmd.running() || avgCmd.running()) {
+    TimeUnit.MILLISECONDS.sleep(100);
+}
+```
 
-> 💻 У цьому завданні реалізовано шаблон проектування Factory Method, ієрархію інтерфейсів та колекцію результатів обчислень.
+Завдяки двом чергам `min` та `max+avg` виконуються **паралельно** —
+кожна черга має свій власний Worker у окремому потоці.
 
-🔗 [Перейти до завдання](https://github.com/Vumirka/oop-java-practice/tree/task-3-(04.03.26))
+---
 
-</details>
+## 🔍 Нові класи
 
-<details>
-<summary>🌷 Завдання 4 (05.03.26)</summary>
-<br>
+| Клас | Роль |
+|------|------|
+| `Queue` | Інтерфейс черги — методи `put` та `take` |
+| `CommandQueue` | Реалізує Worker Thread — черга + внутрішній Worker |
+| `MaxResistanceCommand` | Завдання: пошук максимального R_total |
+| `MinResistanceCommand` | Завдання: пошук мінімального R_total |
+| `AvgResistanceCommand` | Завдання: середнє арифметичне R_total |
+| `ExecuteCommand` | Консольна команда — створює черги та запускає потоки |
 
-> 💻 У цьому завданні розширено ієрархію класами ViewTable та ViewableTable, продемонстровано overriding, overloading та поліморфізм.
+---
 
-🔗 [Перейти до завдання](https://github.com/Vumirka/oop-java-practice/tree/task-4-(05.03.26))
+## 🖥️ Команди діалогу
 
-</details>
+| Команда | Дія |
+|---------|-----|
+| `v` | Переглянути таблицю |
+| `g` | Згенерувати нові дані |
+| `c` | Масштабувати колекцію |
+| `o` | Сортувати за R_total |
+| `s` | Зберегти у файл |
+| `r` | Відновити з файлу |
+| `u` | Скасувати останню дію |
+| `e` | Запустити всі потоки паралельно |
+| `q` | Вийти |
+
+---
+
+## 📸 Скріншоти виконання
+
+### 📸 1 — Запуск потоків з меню
+![threads](img/threads.png)
+
+---
+
+### 📸 2 — Паралельне виконання потоків
+![parallel](img/parallel.png)
+
+---
+
+### 📸 3 — Результати тестування
+![tests](img/tests.png)
+
+---
 
 <div align="center">
-
 Розроблено з 💜 | Ріжкевич Вікторія
-
 </div>
