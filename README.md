@@ -232,7 +232,7 @@ Author author = clazz.getAnnotation(Author.class);
 ---
 
 ### 📸 5 - Сортування колекції
-> Натиснуто «🔃 Сортувати» — колекція впорядкована за зростанням R_total.
+> Натиснуто «🔃 Сортувати» - колекція впорядкована за зростанням R_total.
 > На графіку видно що стовпці тепер ідуть від найнижчого до найвищого,
 > таблиця також оновилась у правильному порядку.
 
@@ -241,17 +241,17 @@ Author author = clazz.getAnnotation(Author.class);
 ---
 
 ### 📸 6 - Панель рефлексії після Inspect
-> Натиснуто «🔍 Inspect» — клас ReflectionDemo зчитав анотації
+> Натиснуто «🔍 Inspect» - клас ReflectionDemo зчитав анотації
 > через Reflection API. Видно що @Author (RUNTIME) прочиталась успішно,
-> а @Version (CLASS) та @Todo (SOURCE) недоступні — це демонструє
+> а @Version (CLASS) та @Todo (SOURCE) недоступні - це демонструє
 > різницю між трьома Retention policies.
 
 ![reflect](img/reflect.png)
 
 ---
 
-### 📸 7 — Результати тестування
-> Запущено ResistanceTest.java — всі тести пройшли успішно.
+### 📸 7 - Результати тестування
+> Запущено ResistanceTest.java - всі тести пройшли успішно.
 
 ![tests](img/tests2.png)
 
