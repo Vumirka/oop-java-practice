@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🌸 Завдання 6
+# 🌸 Завдання 7
 
 ![Java](https://img.shields.io/badge/Java-☕-pink?style=for-the-badge)
 ![NetBeans](https://img.shields.io/badge/IDE-NetBeans-purple?style=for-the-badge)
@@ -10,9 +10,10 @@
 
 ---
 
-> У цьому завданні реалізовано паралельну обробку колекції об'єктів
-> з використанням шаблону Worker Thread. Три завдання виконуються
-> паралельно у двох чергах - пошук мінімуму, максимуму та середнього значення R_total.
+> У цьому завданні реалізовано графічний інтерфейс з використанням шаблону
+> Observer, анотацій з різними Retention policies та концепції рефлексії.
+> Колекція опорів відображається у таблиці та на двох типах графіків,
+> які автоматично оновлюються при будь-якій зміні даних.
 
 ---
 
@@ -23,153 +24,196 @@
 електричного опору трьох послідовно з'єднаних провідників при заданому
 постійному струмі та відомій напрузі на кожному провіднику.
 
-### Три обов'язкові частини
+### Чотири обов'язкові частини
 
-**Завдання 1** - Продемонструвати можливість паралельної обробки елементів колекції (пошук мінімуму, максимуму, обчислення середнього значення, відбір за критерієм, статистична обробка тощо).
+**Завдання 1** -  Розробити ієрархію класів відповідно до шаблону Observer (java) та продемонструвати можливість обслуговування розробленої раніше колекції (об'єкт, що спостерігається, Observable) різними (не менше двох) спостерігачами (Observers) – відстеження змін, упорядкування, висновок, відображення і т.д.
 
-**Завдання 2** - Управління чергою завдань (команд) реалізувати за допомогою шаблону Worker Thread.
+**Завдання 2** - При реалізації ієрархії класів використати інструкції (Annotation). Відзначити особливості різних політик утримання анотацій (annotation retention policies). Продемонструвати підтримку класів концепції рефлексії (Reflection).
+
+**Завдання 3** - Використовуючи раніше створені класи, розробити додаток, що відображає результати обробки колекції об'єктів у графічному вигляді
+
+**Завдання 4** - Забезпечити діалоговий інтерфейс з користувачем та перемальовування графіка під час зміни значень елементів колекції.
 
 ---
 
 ## 💜 Про програму
 
-Програма розширює попередній проект - додано три команди для паралельної
-обробки колекції та клас CommandQueue що реалізує шаблон Worker Thread.
-Команда `e` запускає два обробники черги одночасно і розподіляє між ними
-три завдання. Програма очікує завершення всіх потоків перед поверненням до меню.
+Програма об'єднує всі попередні проекти в єдиний графічний додаток.
+Клас `ResistanceObservable` зберігає колекцію та сповіщає трьох спостерігачів
+при кожній зміні даних. `TableObserver` миттєво оновлює таблицю,
+`ChartObserver` перемальовує обидва графіки, а лямбда-спостерігач
+оновлює панель статистики. Анотації демонструють три різні політики
+утримання, а клас `ReflectionDemo` читає їх.
 
 ---
 
 ## 📁 Структура проекту
 ```
 ├── img
-│   ├── threads.png
-│   ├── parallel.png
+│   ├── gui.png
+│   ├── charts.png
+│   ├── reflect.png
 │   └── tests.png
 ├── src
 │   ├── domain
-│   │   ├── ResistanceData.java           ← з попередніх проектів
-│   │   ├── ResistanceCalculator.java     ← з попередніх проектів
-│   │   ├── View.java                     ← з попередніх проектів
-│   │   ├── Viewable.java                 ← з попередніх проектів
-│   │   ├── ViewableResult.java           ← з попередніх проектів
-│   │   ├── ViewResult.java               ← з попередніх проектів
-│   │   ├── ViewableTable.java            ← з попередніх проектів
-│   │   ├── ViewTable.java                ← з попередніх проектів
-│   │   ├── Command.java                  ← з попередніх проектів
-│   │   ├── ConsoleCommand.java           ← з попередніх проектів
-│   │   ├── Menu.java                     ← з попередніх проектів
-│   │   ├── Application.java              ← з попередніх проектів
-│   │   ├── ScaleCommand.java             ← з попередніх проектів
-│   │   ├── SortCommand.java              ← з попередніх проектів
-│   │   ├── GenerateCommand.java          ← з попередніх проектів
-│   │   ├── ViewCommand.java              ← з попередніх проектів
-│   │   ├── SaveCommand.java              ← з попередніх проектів
-│   │   ├── RestoreCommand.java           ← з попередніх проектів
-│   │   ├── UndoCommand.java              ← з попередніх проектів
-│   │   ├── Queue.java                    ← НОВЕ: інтерфейс черги
-│   │   ├── CommandQueue.java             ← НОВЕ: Worker Thread
-│   │   ├── MaxResistanceCommand.java     ← НОВЕ: пошук максимуму
-│   │   ├── MinResistanceCommand.java     ← НОВЕ: пошук мінімуму
-│   │   ├── AvgResistanceCommand.java     ← НОВЕ: середнє значення
-│   │   └── ExecuteCommand.java           ← НОВЕ: запуск потоків
+│   │   ├── command
+│   │   │   ├── Application.java       ← Singleton
+│   │   │   ├── Command.java           ← інтерфейс команди
+│   │   │   ├── ConsoleCommand.java    ← інтерфейс консольної команди
+│   │   │   ├── ExecuteCommand.java    ← запуск потоків
+│   │   │   ├── GenerateCommand.java   ← генерація даних
+│   │   │   ├── Menu.java              ← макрокоманда
+│   │   │   ├── RestoreCommand.java    ← відновлення
+│   │   │   ├── SaveCommand.java       ← збереження
+│   │   │   ├── ScaleCommand.java      ← масштабування + undo
+│   │   │   ├── SortCommand.java       ← сортування + undo
+│   │   │   ├── UndoCommand.java       ← скасування
+│   │   │   └── ViewCommand.java       ← перегляд
+│   │   ├── core
+│   │   │   ├── ResistanceCalculator.java  ← обчислення опору
+│   │   │   └── ResistanceData.java        ← модель даних
+│   │   ├── observer
+│   │   │   ├── AppAnnotations.java    ← НОВЕ: 3 анотації (RUNTIME/CLASS/SOURCE)
+│   │   │   ├── ChartObserver.java     ← НОВЕ: спостерігач графіків
+│   │   │   ├── ReflectionDemo.java    ← НОВЕ: демонстрація рефлексії
+│   │   │   ├── ResistanceObservable.java ← НОВЕ: Observable
+│   │   │   ├── ResistanceObserver.java   ← НОВЕ: інтерфейс Observer
+│   │   │   └── TableObserver.java     ← НОВЕ: спостерігач таблиці
+│   │   ├── thread
+│   │   │   ├── AvgResistanceCommand.java  ← середнє значення
+│   │   │   ├── CommandQueue.java          ← Worker Thread
+│   │   │   ├── MaxResistanceCommand.java  ← пошук максимуму
+│   │   │   ├── MinResistanceCommand.java  ← пошук мінімуму
+│   │   │   └── Queue.java                ← інтерфейс черги
+│   │   └── view
+│   │       ├── View.java              ← інтерфейс відображення
+│   │       ├── ViewResult.java        ← базова колекція
+│   │       ├── ViewTable.java         ← таблична колекція
+│   │       ├── Viewable.java          ← інтерфейс фабрики
+│   │       ├── ViewableResult.java    ← ConcreteCreator
+│   │       └── ViewableTable.java     ← ConcreteCreator+
 │   └── test
-│       ├── Main.java                     ← оновлений
-│       └── ResistanceTest.java           ← 6 нових тестів
+│       ├── Main.java                  ← консольна точка входу
+│       ├── MainGUI.java               ← НОВЕ: графічний інтерфейс
+│       └── ResistanceTest.java        ← тестування
 ├── .gitignore
 └── README.md
 ```
 
 ---
 
-## 🗂️ Шаблон Worker Thread
+## 🗂️ Шаблон Observer
 
-### Як це працює
+### Ієрархія класів
 
-Клас `CommandQueue` створює внутрішній клас `Worker` що виконується
-в окремому потоці. Worker безперервно перевіряє чергу та виконує
-команди одну за одною. Клієнту достатньо лише покласти завдання у чергу.
-```
-Клієнт                CommandQueue              Worker (окремий потік)
-   |                       |                           |
-   |--- put(minCmd) ------>|                           |
-   |--- put(maxCmd) ------>|                           |
-   |                       |<--- take() --------------|
-   |                       |---- minCmd.execute() ---->|
-   |                       |<--- take() --------------|
-   |                       |---- maxCmd.execute() ---->|
-```
+| Роль | Клас | Опис |
+|------|------|------|
+| Observable | `ResistanceObservable` | Зберігає колекцію, сповіщає спостерігачів |
+| Observer (інтерфейс) | `ResistanceObserver` | Метод `update(items)` |
+| Observer 1 | `TableObserver` | Оновлює JTable |
+| Observer 2 | `ChartObserver` | Перемальовує bar і line графіки |
+| Observer 3 | лямбда в `MainGUI` | Оновлює статистику min/max/avg |
+---
 
-### Розподіл завдань між двома чергами
+## 🏷️ Анотації та Retention policies
+
+У проекті реалізовано три анотації з різними політиками утримання:
+
+### RUNTIME — `@Author`
 ```java
-// Черга 1 - виконує MinResistanceCommand
-CommandQueue queue1 = new CommandQueue();
-queue1.put(minCmd);
-
-// Черга 2 - виконує MaxResistanceCommand, потім AvgResistanceCommand
-CommandQueue queue2 = new CommandQueue();
-queue2.put(maxCmd);
-queue2.put(avgCmd);
-
-// Головний потік очікує завершення всіх трьох
-while (minCmd.running() || maxCmd.running() || avgCmd.running()) {
-    TimeUnit.MILLISECONDS.sleep(100);
+@Retention(RetentionPolicy.RUNTIME)  // доступна через Reflection
+@Target({ElementType.TYPE, ElementType.METHOD})
+public @interface Author {
+    String name() default "Rizhkevych Viktoriia";
+    String date() default "2026";
 }
 ```
+Зберігається у `.class` файлі **і** завантажується у JVM.
+Reflection може прочитати її під час виконання програми.
 
-Завдяки двом чергам `min` та `max+avg` виконуються **паралельно** -
-кожна черга має свій власний Worker у окремому потоці.
+### CLASS — `@Version`
+```java
+@Retention(RetentionPolicy.CLASS)
+@Target(ElementType.TYPE)
+public @interface Version {
+    String value() default "1.0";
+}
+```
+Зберігається у `.class` файлі, але **не** завантажується у JVM.
+Reflection її не бачить — використовується інструментами байткоду.
+
+### SOURCE — `@Todo`
+```java
+@Retention(RetentionPolicy.SOURCE)
+@Target(ElementType.METHOD)
+public @interface Todo {
+    String value() default "";
+}
+```
+Існує лише у вихідному коді. Компілятор видаляє її -
+не потрапляє ні у `.class` ні у JVM.
 
 ---
 
-## 🔍 Нові класи
+## 🔬 Рефлексія (Reflection)
 
-| Клас | Роль |
-|------|------|
-| `Queue` | Інтерфейс черги - методи `put` та `take` |
-| `CommandQueue` | Реалізує Worker Thread — черга + внутрішній Worker |
-| `MaxResistanceCommand` | Завдання: пошук максимального R_total |
-| `MinResistanceCommand` | Завдання: пошук мінімального R_total |
-| `AvgResistanceCommand` | Завдання: середнє арифметичне R_total |
-| `ExecuteCommand` | Консольна команда — створює черги та запускає потоки |
+Клас `ReflectionDemo` зчитує анотації класів через Reflection API.
+У GUI кнопка **«🔍 Inspect»** демонструє результати:
+```java
+// Читаємо RUNTIME анотацію  вона доступна
+Author author = clazz.getAnnotation(Author.class);
+// → name: Rizhkevych Viktoriia, date: 2026
+
+// CLASS анотація - Reflection не бачить
+// → повертає null
+
+// SOURCE анотація - зникла при компіляції
+// → повертає null
+```
 
 ---
 
-## 🖥️ Команди діалогу
+## 🖥️ Графічний інтерфейс
 
-| Команда | Дія |
-|---------|-----|
-| `v` | Переглянути таблицю |
-| `g` | Згенерувати нові дані |
-| `c` | Масштабувати колекцію |
-| `o` | Сортувати за R_total |
-| `s` | Зберегти у файл |
-| `r` | Відновити з файлу |
-| `u` | Скасувати останню дію |
-| `e` | Запустити всі потоки паралельно |
-| `q` | Вийти |
+Вікно розміром **1100×700** містить чотири зони:
+
+| Зона | Вміст |
+|------|-------|
+| Верхня панель | Заголовок програми |
+| Ліва панель | Таблиця з колекцією (Observer 1) |
+| Центральна панель | Вкладки з графіками (Observer 2) |
+| Права панель | Кнопки керування, статистика (Observer 3), рефлексія |
+
+### Кнопки керування
+
+| Кнопка | Дія |
+|--------|-----|
+| ✨ Генерувати | Створює 8 нових записів |
+| ⚖ Масштабувати | Запитує коефіцієнт і масштабує R_total |
+| 🔃 Сортувати | Сортує за зростанням R_total |
+| 🔍 Inspect | Демонструє рефлексію анотацій |
 
 ---
 
 ## 📸 Скріншоти виконання
 
-### 📸 1 - Запуск потоків з меню
-![threads1](img/threads1.png)
-
-![threads2](img/threads2.png)
+### 📸 1 - Головне вікно після генерації
+![gui](img/gui.png)
 
 ---
 
-### 📸 2 - Паралельне виконання потоків
-![parallel](img/parallel.png)
+### 📸 2 - Обидва графіки (bar і line)
+![charts](img/charts.png)
 
 ---
 
-### 📸 3 - Результати тестування
-![tests2](img/tests2.png)
+### 📸 3 - Панель рефлексії після Inspect
+![reflect](img/reflect.png)
 
-![tests1](img/tests1.png)
+---
 
+### 📸 4 - Результати тестування
+![tests](img/tests.png)
 
 ---
 
