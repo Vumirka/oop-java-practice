@@ -253,9 +253,9 @@ Author author = clazz.getAnnotation(Author.class);
 ### 📸 7 - Результати тестування
 > Запущено ResistanceTest.java - всі тести пройшли успішно.
 
-![tests](img/tests1.png)
+![tests1](img/tests1.png)
 
-![tests](img/tests2.png)
+![tests2](img/tests2.png)
 
 ---
 
